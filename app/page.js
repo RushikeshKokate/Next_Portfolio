@@ -1,28 +1,20 @@
 "use client";
 
-import React, { Suspense } from "react";
-import { FaGithub, FaLinkedinIn } from "react-icons/fa";
+import React from "react";
+import { FaGithub, FaLinkedinIn, FaDownload } from "react-icons/fa";
 import { motion } from "framer-motion";
-import Image from "next/image";
-import profile_pic from "../assets/profile_pic.jpg";
-import { Skeleton } from "antd";
-import SkeletonImage from "@/UI/SkeletonImage";
 import dynamic from "next/dynamic";
+import SkeletonImage from "@/UI/SkeletonImage";
+
+// Dynamically import profile image component
 const ProfilePic = dynamic(() => import("@/UI/ProfilePic"), {
   loading: () => <SkeletonImage />,
-  ssr: false, // optional
+  ssr: false,
 });
 
-
-
-
 const HomePage = () => {
-
- 
-
   return (
     <div className="relative min-h-screen overflow-hidden text-white bg-black opacity-95">
-
       {/* 🔴 Background Video */}
       <video
         autoPlay
@@ -35,16 +27,11 @@ const HomePage = () => {
         Your browser does not support the video tag.
       </video>
 
-
-
-
       {/* Main Content */}
       <div className="flex flex-col max-sm:mt-10 md:flex-row items-center justify-center px-6 gap-10 min-h-screen relative z-10">
         {/* Profile Image */}
         <div className="flex justify-center">
-
           <ProfilePic />
-
         </div>
 
         {/* Text Section */}
@@ -71,6 +58,7 @@ const HomePage = () => {
             experiences using Next.js, React, Tailwind CSS, and cutting-edge technologies.
           </motion.p>
 
+          {/* Buttons Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -89,8 +77,17 @@ const HomePage = () => {
             >
               Contact Me
             </a>
+            <a
+              href="/RushikeshKokateResume.pdf"
+              download
+              className="flex items-center gap-2 border border-white px-5 py-2 rounded-full text-xs sm:text-sm uppercase tracking-wide hover:bg-white hover:text-black transition-all duration-300"
+            >
+              <FaDownload />
+              Resume
+            </a>
           </motion.div>
 
+          {/* Social Links */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
