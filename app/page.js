@@ -1,18 +1,28 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import profile_pic from "../assets/profile_pic.jpg";
- 
- 
- 
+import { Skeleton } from "antd";
+import SkeletonImage from "@/UI/SkeletonImage";
+import dynamic from "next/dynamic";
+const ProfilePic = dynamic(() => import("@/UI/ProfilePic"), {
+  loading: () => <SkeletonImage />,
+  ssr: false, // optional
+});
+
+
+
 
 const HomePage = () => {
+
+ 
+
   return (
     <div className="relative min-h-screen overflow-hidden text-white bg-black opacity-95">
-      
+
       {/* 🔴 Background Video */}
       <video
         autoPlay
@@ -25,20 +35,16 @@ const HomePage = () => {
         Your browser does not support the video tag.
       </video>
 
-   
-  
+
+
 
       {/* Main Content */}
       <div className="flex flex-col max-sm:mt-10 md:flex-row items-center justify-center px-6 gap-10 min-h-screen relative z-10">
         {/* Profile Image */}
         <div className="flex justify-center">
-          <Image
-            src={profile_pic}
-            width={400}
-            height={400}
-            className="rounded-full w-72 h-72 sm:w-80 sm:h-80 md:w-[400px] md:h-[400px] object-cover border-2"
-            alt="Picture of the author"
-          />
+
+          <ProfilePic />
+
         </div>
 
         {/* Text Section */}
